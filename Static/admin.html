@@ -10,12 +10,15 @@
 </head>
 <body>
     <div class="nav">
-            <a href="/" class="nav__link highlight" data-link><span></span><i class="fa fa-th-large"></i><span>Dashboard</span></a>
-            <a href="/posts" class="nav__link" data-link><span></span><i class="fa fa-comment"></i><span>Posts</span></a>
-            <a href="/settings" class="nav__link" data-link><span></span><i class="fa fa-cog"></i><span>Settings</span></a>
-            <div class="menuDet"><button id="clos">&#10094;&#10094;</button><button id="opn">&#10095;</button></div>
+            <a href="/admin/" class="nav__link highlight" data-link><span></span><i class="fa fa-th-large"></i><span>Dashboard</span></a>
+            <a href="/admin/add-user" class="nav__link" data-link><span></span><i class="fa fa-user"></i><span>Add User</span></a>
+            <a href="/admin/view-user" class="nav__link" data-link><span></span><i class="fa fa-users"></i><span>View Users</span></a>
+            <a href="/admin/add-exam" class="nav__link" data-link><span></span><i class="fa fa-plus-square"></i><span>Add Exam</span></a>
+             <a href="/admin/view-exams" class="nav__link" data-link><span></span><i class="fa fa-laptop"></i><span>View Exams</span></a>
+            <div class="menuDet"><button id="clos">&#10094;&#10094;</button><button id="opn">&#10095;&#10095;</button></div>
         </div>
         <div class="nav_top">
+            <a class="brandname">CBT</a><sub class="namesub">admin</sub>
             <div><span id="uName" class="uName"><i class="fa fa-user"></i>&nbsp;John Doe</span><span style="cursor:pointer;margin-left: 20px" onclick="logout()" class="logou"><i class="fa fa-sign-out"></i>&nbsp;Log Out</span></div>        
         </div>
     <div class="content">
@@ -23,6 +26,6 @@
         <div id="app"></div>
     </div>
       
-    <script type="module" src="/Static/Js/index.js"></script>  
+    <script type="module" src="/Static/Js/admin.js"></script>  
 </body>
 </html>

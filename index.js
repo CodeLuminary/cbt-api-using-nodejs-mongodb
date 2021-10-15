@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 const dbUri = 'mongodb+srv://admin:Richesbrainz1@codeluminary.gpnyp.mongodb.net/cbt?retryWrites=true&w=majority';
-mongoose.connect(dbUri,{useNewUrlParser: true, useUnifiedTopology: true})
+/*mongoose.connect(dbUri,{useNewUrlParser: true, useUnifiedTopology: true})
 .then(result=>{
     console.log("Connected to db")
-}).catch(err=>console.log(err));
+}).catch(err=>console.log(err));*/
 
 app.get('/get-users', (req,res)=>{
     const user = new UsersModel({
@@ -51,6 +51,9 @@ app.get('/single-users/:id',(req,res)=>{
 
 app.get('/api/exam', (req,res)=>{
     
+})
+app.get('/admin/*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'Static/admin.html'))
 })
 app.get('/admin',(req,res)=>{
     res.sendFile(path.join(__dirname,'Static/admin.html'))
