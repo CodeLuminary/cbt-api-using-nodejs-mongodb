@@ -61,13 +61,13 @@ a {
 .namesub{color:var(--lighter-green)}
 .nav__link:hover{background-color: var(--hightlight); color:var(--icon-color)}
 .nav__link:hover span:first-child{color:var(--icon-color) !important}
-.addUserDiv > div > h1{color: var(--icon-color);background-color: var(--light-gray);padding:10px 5%;margin-top: 0px;
+.addUserDiv > div > h1{color: var(--icon-color);background-color: var(--light-gray);padding:10px 5%;margin: 0px;
 border-radius: 10px 10px 0px 0px; border-top: 1px solid var(--lighter-gray);}
 .require{color:var(--icon-color)}
 
-.addUserDiv > div > div{padding: 10px 5% 40px}
+.addUserDiv > div > div{padding: 20px 5% 40px}
 .addUserDiv > div{border-radius: 10px; border: 1px solid var(--light-gray);}
-.addUserDiv input[type="text"], .addUserDiv input[type="password"], .addUserDiv input[type="email"]{
+.addUserDiv input[type="text"], .addUserDiv input[type="password"], .addUserDiv input[type="email"], textarea{
     width: 400px;border-radius: 5px;padding-left: 5px;margin: 5px 0px 15px; outline: none;
     height: 35px;background-color: var(--light-gray);border: 1px solid var(--light-gray);
 }
@@ -76,3 +76,11 @@ border-radius: 10px 10px 0px 0px; border-top: 1px solid var(--lighter-gray);}
     width: 400px; height: 50px;color: #fff; font-weight: bold;margin-top: 25px;cursor: pointer;
     border: 2px solid var(--green-gradient);border-radius: 5px; background-image: var(--green-gradient);
 }
+.addUserDiv td, .addUserDiv th, .addUserDiv tr,.addUserDiv table{padding: 10px;border-collapse: collapse;}
+.addUserDiv table tr:first-child{background-color: var(--light-gray);}
+.addUserDiv table{width: 100%;border-top: 1px solid var(--lighter-gray);}
+th{color: var(--main-color)}
+.addUserDiv tr th:nth-child(2), .addUserDiv tr td:nth-child(2){
+    color: var(--lighter-green)
+}
+textarea{height: 150px;padding: 10px;font-family: Arial, Helvetica, sans-serif;width: 390px;}

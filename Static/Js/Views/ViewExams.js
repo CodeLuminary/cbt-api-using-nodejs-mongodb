@@ -10,13 +10,13 @@ export default class extends ParentView {
         return `
         <div class="addUserDiv col-2">
             <div>
-                <h1 class=""><i class="fa fa-users"></i>&nbsp;VIEW USERS</h1>
+                <h1 class=""><i class="fa fa-laptop"></i>&nbsp;VIEW EXAMS</h1>
                 <div style="padding:0px">
                     <table>
                         <tr>
-                            <th>User Fullname</th>
-                            <th>User Email</th>
-                            <th>User Password</th>
+                            <th>Exam Name</th>
+                            <th>Exam Duration</th>
+                            <th>Exam Instruction</th>
                             <th>Action</th>
                         </tr>
                     </table>

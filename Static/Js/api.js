@@ -1,7 +1,7 @@
 export default class restApi{
     //Set domain name here
     static domain = "";
-    async static fetchApi(url, methodType, isDomainUsed=true, reqObject={}){
+    static async fetchApi(url, methodType, isDomainUsed=true, reqObject){
         let mainUrl;
         if(isDomainUsed){
             mainUrl = domain + url;

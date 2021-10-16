@@ -18,7 +18,7 @@ export default class extends ParentView {
                         <input type="email" placeholder="Enter user email" /><br>
                         <span>User Password<span class="require">*</span></span><br>
                         <input type="password" placeholder="Enter user password" /><br>
-                        <button>Save</button>
+                        <button id="btn">Save</button>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@ export default class extends ParentView {
     }
     async loadHtmlEvent(){
             //Add Event listeners here
-           document.getElementById("btn").addEventListener("click",this.showAlert);
+           document.getElementById("btn").addEventListener("click",this.saveUser);
            //or you can use arrow function like this
            /*
              document.getElementById("btn").addEventListener("click", () =>{
@@ -35,10 +35,10 @@ export default class extends ParentView {
             */
 
     }
-    showAlert(){
+    saveUser(){
         alert("Button click event is working");
     }
     async getCss(){
-        return [`/Static/Css/app.css`];
+        return [];
     }
 }
