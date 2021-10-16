@@ -3,17 +3,20 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const UsersModel = require('./Models/users')
+const dotenv = require('dotenv');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
-const dbUri = 'mongodb+srv://admin:Richesbrainz1@codeluminary.gpnyp.mongodb.net/cbt?retryWrites=true&w=majority';
-/*mongoose.connect(dbUri,{useNewUrlParser: true, useUnifiedTopology: true})
+dotenv.config();
+
+const dbUri = process.env.DB_URL;
+mongoose.connect(dbUri,{useNewUrlParser: true, useUnifiedTopology: true})
 .then(result=>{
     console.log("Connected to db")
-}).catch(err=>console.log(err));*/
+}).catch(err=>console.log(err));
 
 app.get('/get-users', (req,res)=>{
     const user = new UsersModel({
@@ -39,8 +42,27 @@ app.get('/all-users',(req,res)=>{
         console.log(err);
     })
 })
-app.get('/single-users/:id',(req,res)=>{
+app.get('/single-users',(req,res)=>{
     UsersModel.findById('61695a154148859bd4f026ba')
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+app.get('/delete-user',(req,res)=>{
+    UsersModel.findByIdAndDelete('61695984b1ca205cb441ea54')
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+app.get('/update-user',(req,res)=>{
+
+    UsersModel.findByIdAndUpdate('61695984b1ca205cb441ea54',{email: "ijonivictor@gmail.com"})
     .then((result)=>{
         res.send(result)
     })

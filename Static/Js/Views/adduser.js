@@ -3,14 +3,25 @@ import ParentView from "../ParentView.js";
 export default class extends ParentView {
     constructor(argument) {
         super(argument);
-        this.setTitle("Posts");
+        this.setTitle("Cbt Admin - Add user");
     }
 
     async getHtml() {
         return `
-            <h1>Posts</h1>
-            <p>You are viewing the posts on this app.<br> Don't forget to follow me for more codes</p>
-            <button id="btn">Test button</button>
+            <div class="addUserDiv col-2">
+                <div>
+                    <h1 class=""><i class="fa fa-user"></i>&nbsp;ADD USER</h1>
+                    <div>
+                        <span>User Fullname<span class="require">*</span></span><br>
+                        <input type="text" placeholder="Enter user full name" /><br>
+                        <span>User Email<span class="require">*</span></span><br>
+                        <input type="email" placeholder="Enter user email" /><br>
+                        <span>User Password<span class="require">*</span></span><br>
+                        <input type="password" placeholder="Enter user email" /><br>
+                        <button>Save</button>
+                    </div>
+                </div>
+            </div>
         `;
     }
     async loadHtmlEvent(){

@@ -8,6 +8,7 @@
     --icon-color:#009900;
     --hightlight:rgba(0,230,0,0.1);
     --lighter-green:#00b300;
+    --green-gradient: linear-gradient(96.67deg, #34a853 0, #b4d245 100%)
 }
 body {    
     font-family: 'Quicksand', sans-serif;
@@ -59,3 +60,17 @@ a {
 .namesub{color:var(--lighter-green)}
 .nav__link:hover{background-color: var(--hightlight); color:var(--icon-color)}
 .nav__link:hover span:first-child{color:var(--icon-color) !important}
+.addUserDiv > div > h1{color: var(--icon-color);background-color: var(--light-gray);padding:10px 5%;margin-top: 0px;
+border-radius: 10px 10px 0px 0px; border-top: 1px solid var(--lighter-gray);}
+.require{color:var(--icon-color)}
+.addUserDiv > div > div{padding: 10px 5% 40px}
+.addUserDiv > div{border-radius: 10px; border: 1px solid var(--light-gray);}
+.addUserDiv input[type="text"], .addUserDiv input[type="password"], .addUserDiv input[type="email"]{
+    width: 400px;border-radius: 5px;padding-left: 5px;margin: 5px 0px 15px; outline: none;
+    height: 35px;background-color: var(--light-gray);border: 1px solid var(--light-gray);
+}
+.addUserDiv button{
+    font-size: 22px;
+    width: 400px; height: 50px;color: #fff; font-weight: bold;margin-top: 25px;cursor: pointer;
+    border: 2px solid var(--green-gradient);border-radius: 5px; background-image: var(--green-gradient);
+}
