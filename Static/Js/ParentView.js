@@ -1,3 +1,5 @@
+import api from './api.js';
+
 export default class {
     constructor(argument) {
         this.argument = argument;
@@ -15,5 +17,8 @@ export default class {
     }
     async getCss(){
         return [];
+    }
+    async fetchApi(url, methodType, isDomainUsed, reqObject){
+        api.fetchApi(url,methodType, isDomainUsed, reqObject)
     }
 }

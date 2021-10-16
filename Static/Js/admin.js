@@ -1,5 +1,6 @@
 
-import routes from "./router.js"
+import routes from "./router.js";
+import api from "./api.js";
 
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 

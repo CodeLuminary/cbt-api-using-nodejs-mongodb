@@ -17,7 +17,7 @@ export default class extends ParentView {
                         <span>User Email<span class="require">*</span></span><br>
                         <input type="email" placeholder="Enter user email" /><br>
                         <span>User Password<span class="require">*</span></span><br>
-                        <input type="password" placeholder="Enter user email" /><br>
+                        <input type="password" placeholder="Enter user password" /><br>
                         <button>Save</button>
                     </div>
                 </div>
