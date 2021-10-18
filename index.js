@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const UsersModel = require('./Models/users')
 const dotenv = require('dotenv');
+const userController = require('./Controllers/UserController')
 
 const app = express();
 
@@ -18,57 +19,26 @@ mongoose.connect(dbUri,{useNewUrlParser: true, useUnifiedTopology: true})
     console.log("Connected to db")
 }).catch(err=>console.log(err));
 
-app.get('/get-users', (req,res)=>{
-    const user = new UsersModel({
+app.get('/add-users', (req,res)=>{
+    /*const user = new UsersModel({
         name: "ijoni victor",
         email:'victorijoni@yahoo.com',
         password: '12345',
         isEnabled: true
-    })
-    user.save()
-    .then((result)=>{
-        res.send(result);
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    })*/
+    userController.AddUser(req,res);
 })
 app.get('/all-users',(req,res)=>{
-    UsersModel.find()
-    .then((result)=>{
-        res.send(result);
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    userController.FindUsers(res)
 })
 app.get('/single-users',(req,res)=>{
-    UsersModel.findById('61695a154148859bd4f026ba')
-    .then((result)=>{
-        res.send(result)
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    userController.FindSingleUser(req,res);
 })
 app.get('/delete-user',(req,res)=>{
-    UsersModel.findByIdAndDelete('61695984b1ca205cb441ea54')
-    .then((result)=>{
-        res.send(result)
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    userController.DeleteUser(req,res);
 })
 app.get('/update-user',(req,res)=>{
-
-    UsersModel.findByIdAndUpdate('61695984b1ca205cb441ea54',{email: "ijonivictor@gmail.com"})
-    .then((result)=>{
-        res.send(result)
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    userController.UpdateUser(req,res);
 })
 
 app.get('/api/exam', (req,res)=>{
