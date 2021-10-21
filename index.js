@@ -50,6 +50,9 @@ app.get('/admin/*',(req,res)=>{
 app.get('/admin',(req,res)=>{
     res.sendFile(path.join(__dirname,'Static/admin.html'))
 })
+app.get('/login',(req,res)=>{
+    res.sendFile(path.join(__dirname,'Static/login.html'))
+})
 
 app.all('/*',(req,res)=>{
     res.status(404).send({404: 'PAGE NOT FOUND!'})
