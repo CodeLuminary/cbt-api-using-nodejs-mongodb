@@ -15,6 +15,9 @@ export default class {
     async loadHtmlEvent(){
         
     }
+    viewOnloaded(){
+        
+    }
     async getCss(){
         return [];
     }

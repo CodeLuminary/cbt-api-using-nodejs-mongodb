@@ -18,7 +18,7 @@ export default class extends ParentView {
                         <input id="email" type="email" placeholder="Enter user email" /><br>
                         <span>User Password<span class="require">*</span></span><br>
                         <input id="password" type="password" placeholder="Enter user password" /><br>
-                        <button id="btn">Save</button>
+                        <button class="formButton" id="btn">Save</button>
                     </div>
                 </div>
             </div>
@@ -43,6 +43,9 @@ export default class extends ParentView {
                 alert("Action failed. User could not be added");
             }
         })
+    }
+    viewOnloaded(){
+
     }
     async getCss(){
         return [];

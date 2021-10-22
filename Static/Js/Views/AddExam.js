@@ -18,7 +18,7 @@ export default class extends ParentView {
                         <input type="email" placeholder="Enter exam duration" /><br>
                         <span>Exam Instructions<span class="require">*</span></span><br>
                         <textarea rows="6" >Enter exam instructions</textarea><br>
-                        <button id="btn">Save</button>
+                        <button class="formButton" id="btn">Save</button>
                     </div>
                 </div>
             </div>

@@ -53,10 +53,16 @@ const router = async () => {
         };
     }
 
+    const viewMatch = match.route.view;
+
     const view = new match.route.view(getParams(match));
 
     document.querySelector("#app").innerHTML = await view.getHtml();
-    await view.loadHtmlEvent();
+    view.loadHtmlEvent();
+
+    if(viewMatch.shouldLoadData){
+        loadUI(view, viewMatch);
+    }
 
     const css = await view.getCss();
     let clss = match.route.path.split('/')[1];
@@ -87,6 +93,22 @@ const router = async () => {
 };
 
 window.addEventListener("popstate", router);
+
+const loadUI = (view, viewMatch) =>{
+    try{
+        view.loadData(viewMatch.viewData);
+    }
+    catch(e){}
+}
+
+
+const getContent = async (value) =>{
+    //const newView = new value.view();
+    if(value.view.shouldLoadData){
+        value.view.viewData =  await new value.view().viewOnloaded();
+            loadUI(new value.view(), value.view)
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", e => {
@@ -127,4 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         opn.style.display="none";
         root.style.setProperty('--nav-width',"200px")
     })
+    //This is for lazy loading of data from server
+    routes.forEach(getContent);
+
 });
