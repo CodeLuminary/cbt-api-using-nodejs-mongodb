@@ -13,11 +13,11 @@ export default class extends ParentView {
                     <h1 class=""><i class="fa fa-user"></i>&nbsp;ADD USER</h1>
                     <div>
                         <span>User Fullname<span class="require">*</span></span><br>
-                        <input type="text" placeholder="Enter user full name" /><br>
+                        <input id="name" type="text" placeholder="Enter user full name" /><br>
                         <span>User Email<span class="require">*</span></span><br>
-                        <input type="email" placeholder="Enter user email" /><br>
+                        <input id="email" type="email" placeholder="Enter user email" /><br>
                         <span>User Password<span class="require">*</span></span><br>
-                        <input type="password" placeholder="Enter user password" /><br>
+                        <input id="password" type="password" placeholder="Enter user password" /><br>
                         <button id="btn">Save</button>
                     </div>
                 </div>
@@ -27,16 +27,22 @@ export default class extends ParentView {
     async loadHtmlEvent(){
             //Add Event listeners here
            document.getElementById("btn").addEventListener("click",this.saveUser);
-           //or you can use arrow function like this
-           /*
-             document.getElementById("btn").addEventListener("click", () =>{
-                alert("Button click event is working");
-             });
-            */
-
     }
     saveUser(){
-        alert("Button click event is working");
+        const user = {
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+            name: document.getElementById("name").value,
+        }
+        super.fetchApi('/add-user','POST',user)
+        .then((data)=>{
+            if(data.isSuccessful){
+                alert("User added successully"); //You can replace this with modal
+            }
+            else{
+                alert("Action failed. User could not be added");
+            }
+        })
     }
     async getCss(){
         return [];

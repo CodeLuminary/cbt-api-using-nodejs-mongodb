@@ -9,16 +9,18 @@
 <body>
     <div >
         <div class="loginDiv">
-                    
-            <h4>LOG IN</h4>
-            <span>Enter Email<span class="required">*</span></span><br />
-            <input type="text" placeholder="Enter email" id="email" required="required" name="email" class="loginInput" /><br />
-            <span>Enter Password<span class="required">*</span></span><br />
-            <input type="password" placeholder="Enter password" id="password" required="required" name="password" class="loginInput" /><br />
-            <a class="forgotPassword" href="/forget-password.html">Forgot Password?</a>
-            <p style="text-align:center">
-                <button class="btn btnRed" onclick="loginUser()">Login</button>
-            </p>          
+             <form action="#" method="POST" onsubmit="return submit()">
+                <h4>LOG IN</h4>
+                <span>Enter Email<span class="required">*</span></span><br />
+                <input type="text" placeholder="Enter email" id="email" required="required" name="email" class="loginInput" /><br />
+                <span>Enter Password<span class="required">*</span></span><br />
+                <input type="password" placeholder="Enter password" id="password" required="required" name="password" class="loginInput" /><br />
+                <a class="forgotPassword" href="/forget-password.html">Forgot Password?</a>
+                <p style="text-align:center">
+                    <input type="submit" class="btn btnRed" onclick="loginUser()">Login</button>
+                </p> 
+            </form>       
+                     
     </div>
     </div>
 </body>

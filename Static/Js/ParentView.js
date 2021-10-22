@@ -18,7 +18,7 @@ export default class {
     async getCss(){
         return [];
     }
-    async fetchApi(url, methodType, isDomainUsed, reqObject){
-        api.fetchApi(url,methodType, isDomainUsed, reqObject)
+    async fetchApi(url, methodType,reqObject, isDomainUsed){
+        return api.fetchApi(url,methodType, reqObject, isDomainUsed).then((response) => {return response.json();});   
     }
 }

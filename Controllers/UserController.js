@@ -4,10 +4,17 @@ class userController{
         const user = new UsersModel(req.body);
         user.save()
         .then((result)=>{
-            res.send(result);
+            res.send({
+                isSuccessful: true,
+                data:result
+            });
         })
         .catch((err)=>{
             console.log(err);
+            res.send({
+                isSuccessful: false,
+                data: err
+            })
         })
     }
     static FindUsers = (res)=>{

@@ -16,6 +16,7 @@ const userSchema = new Schema({
     },
     isEnabled:{
         type: Boolean,
+        default: true
     }
 })
 const Users = mongoose.model('cbtusers',userSchema);

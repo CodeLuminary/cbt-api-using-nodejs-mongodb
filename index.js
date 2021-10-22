@@ -19,7 +19,7 @@ mongoose.connect(dbUri,{useNewUrlParser: true, useUnifiedTopology: true})
     console.log("Connected to db")
 }).catch(err=>console.log(err));
 
-app.get('/add-users', (req,res)=>{
+app.post('/add-user', (req,res)=>{
     /*const user = new UsersModel({
         name: "ijoni victor",
         email:'victorijoni@yahoo.com',
@@ -31,17 +31,17 @@ app.get('/add-users', (req,res)=>{
 app.get('/all-users',(req,res)=>{
     userController.FindUsers(res)
 })
-app.get('/single-users',(req,res)=>{
+app.get('/single-user',(req,res)=>{
     userController.FindSingleUser(req,res);
 })
-app.get('/delete-user',(req,res)=>{
+app.post('/delete-user',(req,res)=>{
     userController.DeleteUser(req,res);
 })
-app.get('/update-user',(req,res)=>{
+app.post('/update-user',(req,res)=>{
     userController.UpdateUser(req,res);
 })
 
-app.get('/api/exam', (req,res)=>{
+app.post('/api/add-exam', (req,res)=>{
     
 })
 app.get('/admin/*',(req,res)=>{
