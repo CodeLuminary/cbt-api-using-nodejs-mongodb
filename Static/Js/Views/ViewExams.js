@@ -50,6 +50,7 @@ export default class extends ParentView {
                     <td>${value.instruction}</td>
                     <td><a id="deleteExam" onclick="deleteExam(${value._id})">Delete</a><br>    
                         <a id="addQuestion" data-id="${value._id}">Add question</a><br>
+                        <a id="viewQuestion" data-id="${value._id}">View question</a>
                     </td>
                 </tr>
             `
@@ -57,9 +58,14 @@ export default class extends ParentView {
     }
     loadDataEvent(){
         //Load event for new data here
-        const tag = document.getElementById("addQuestion"); let dis = this;
+        const tag = document.getElementById("addQuestion"); 
+        const viewQuestion = document.getElementById("viewQuestion");
+        let dis = this;
         tag.onclick=function(){
             dis.addQuestion(tag.getAttribute("data-id"))
+        }
+        viewQuestion.onclick = function(){
+            dis.viewQuestions(viewQuestion.getAttribute("data-id"));
         }
     }
     async viewOnloaded(){
@@ -141,6 +147,9 @@ export default class extends ParentView {
                 }
             })
         }
+        
+    }
+    viewQuestions(id){
         
     }
     addOption(){alert("Great")

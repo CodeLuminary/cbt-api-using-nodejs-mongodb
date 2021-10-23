@@ -5,12 +5,18 @@ const mongoose = require('mongoose');
 const UsersModel = require('./Models/users')
 const dotenv = require('dotenv');
 const userController = require('./Controllers/UserController');
-const examController = require('./Controllers/ExamController')
+const examController = require('./Controllers/ExamController');
+const cors = require('cors');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
+app.use(cors({
+    origin: "*",
+    methods: ["GET","POST"],
+    allowedHeaders: ['Content-Type']
+}))
 
 dotenv.config();
 
@@ -21,12 +27,6 @@ mongoose.connect(dbUri,{useNewUrlParser: true, useUnifiedTopology: true})
 }).catch(err=>console.log(err));
 
 app.post('/add-user', (req,res)=>{
-    /*const user = new UsersModel({
-        name: "ijoni victor",
-        email:'victorijoni@yahoo.com',
-        password: '12345',
-        isEnabled: true
-    })*/
     userController.AddUser(req,res);
 })
 app.get('/all-users',(req,res)=>{
