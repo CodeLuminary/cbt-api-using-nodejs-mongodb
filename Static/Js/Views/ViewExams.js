@@ -89,13 +89,22 @@ export default class extends ParentView {
                     <span>-</span>
                 </div>
             `;
-            const firstSpan = document.querySelectorAll(".mOptionDiv > span:first-child");
-            for(let sp = 0; sp < firstSpan.length; sp++){
-                firstSpan[sp].innerHTML = (sp + 1).toString();
+
+            const rewriteFirstSpan = () =>{
+                const firstSpan = document.querySelectorAll(".mOptionDiv > span:first-child");
+                for(let sp = 0; sp < firstSpan.length; sp++){
+                    firstSpan[sp].innerHTML = (sp + 1).toString();
+                }
             }
+
+            rewriteFirstSpan();
+            
             const lastSpan = document.querySelectorAll(".mOptionDiv > span:last-child");
-            for(let sp = 0; sp < firstSpan.length; sp++){
-                firstSpan[sp].innerHTML = (sp + 1).toString();
+            for(let sp = 0; sp < lastSpan.length; sp++){
+                lastSpan[sp].addEventListener('click',()=>{
+                    lastSpan[sp].parentElement.parentElement.removeChild(lastSpan[sp].parentElement);
+                    rewriteFirstSpan();
+                })
             }
         });
         
