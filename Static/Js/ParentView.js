@@ -36,9 +36,9 @@ export default class {
     static setViewClass(viewClass,pos){
         this.viewArray[pos] = viewClass;
     }
-    static updateUI(viewName, viewData){ alert("gooooood")
-        for(let i =0; i < this.viewArray.length; i++){
-            if(this.viewArray[i].name==viewName){
+    static updateUI(viewName, viewData){ 
+        for(let i =0; i < this.viewArray.length; i++){ 
+            if(this.viewArray[i].name===viewName){
                 this.viewArray[i].view.viewData = viewData;
                 break;
             }

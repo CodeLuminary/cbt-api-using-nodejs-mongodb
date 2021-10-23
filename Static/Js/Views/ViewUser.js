@@ -64,7 +64,7 @@ export default class extends ParentView {
         .then((data)=>{
             if(data.isSuccessful){
                 alert("User deleted successully"); //You can replace this with modal
-                ParentView.updateUI("ViewUser",data.data);
+                ParentView.updateUI("ViewUser",data);
             }
             else{
                 alert("Action failed. User could not be added");
