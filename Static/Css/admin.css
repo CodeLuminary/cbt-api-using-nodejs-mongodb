@@ -67,7 +67,7 @@ border-radius: 10px 10px 0px 0px; border-top: 1px solid var(--lighter-gray);}
 
 .addUserDiv > div > div{padding: 20px 5% 40px}
 .addUserDiv > div{border-radius: 10px; border: 1px solid var(--light-gray);}
-.addUserDiv input[type="text"], .addUserDiv input[type="password"], .addUserDiv input[type="email"], textarea,.addUserDiv input[type="number"]{
+.addUserDiv input[type="text"], .addUserDiv input[type="password"], .addUserDiv input[type="email"], textarea,.addUserDiv input[type="number"],.myinp{
     width: 400px;border-radius: 5px;padding-left: 5px;margin: 5px 0px 15px; outline: none;
     height: 35px;background-color: var(--light-gray);border: 1px solid var(--light-gray);
 }
@@ -83,6 +83,9 @@ th{color: var(--main-color)}
 .addUserDiv tr th:nth-child(2), .addUserDiv tr td:nth-child(2){
     color: var(--lighter-green)
 }
+.btn{
+    border-radius: 5px;border: 1px solid var(--lighter-gray);padding: 8px 10px;cursor: pointer;
+}
 td{text-align: center;font-size: 16px;} tbody tr:nth-child(even){
     background-color: var(--light-gray);
 }
@@ -92,7 +95,7 @@ td button{
     border: 2px solid var(--green-gradient);border-radius: 5px; background-image: var(--green-gradient);
 }
 td a{
-    color: var(--icon-color);cursor: pointer;
+    color: var(--icon-color);cursor: pointer; display: inline-block;
 }
 
 textarea{height: 150px;padding: 10px;font-family: Arial, Helvetica, sans-serif;width: 390px;}
@@ -109,25 +112,31 @@ textarea{height: 150px;padding: 10px;font-family: Arial, Helvetica, sans-serif;w
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    float: left;
+    padding: 0px 10%;
   }
+  .modal div{float:left}
   
   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 10% 0px; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
   }
 
+  .modal-header{position: relative;border-bottom: 1px solid var(--lighter-gray);width: 100%}
+
   .modal-header h3{
-      color: var(--icon-color)
+      color: var(--icon-color);
   }
   
   /* The Close Button */
   .close {
     color: #aaa;
-    float: right;
+    position: absolute;
+    right: 2px;top: -7px;
     font-size: 28px;
     font-weight: bold;
   }
@@ -138,4 +147,19 @@ textarea{height: 150px;padding: 10px;font-family: Arial, Helvetica, sans-serif;w
     text-decoration: none;
     cursor: pointer;
   }
+
+  .modal-body{
+      padding-top: 30px;width: 100%
+  }
+  
+  .optionDiv{width: 100%}
+  .mOptionDiv{margin: 10px 5px;}
+  .mOptionDiv > span{
+      height: 30px;background-color: var(--lighter-gray);
+      padding: 2px 5px;float: left;cursor: pointer;
+    }
+  .mOptionDiv > input{
+      height: 30px;width:150px;border: 1px solid var(--lighter-gray);float:left;
+      outline: none;
+    }
   

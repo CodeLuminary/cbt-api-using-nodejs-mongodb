@@ -48,15 +48,60 @@ export default class extends ParentView {
                     <td>${value.name}</td>
                     <td>${value.duration}</td>
                     <td>${value.instruction}</td>
-                    <td><a onclick="deleteUser(${value._id})">Delete</a><br>
-                        <a onclick="addQuestion(${value._id})>Add question<a><br>
+                    <td><a id="deleteExam" onclick="deleteExam(${value._id})">Delete</a><br>    
+                        <a id="addQuestion" onclick="addQuestion(${value._id})">Add question</a><br>
                     </td>
                 </tr>
             `
         })
     }
+    loadDataEvent(){
+        //Load event for new data here
+        document.getElementById("addQuestion").addEventListener('click', this.addQuestion)
+    }
     async viewOnloaded(){
         return await super.fetchApi('/all-exams','GET')   
+    }
+    addQuestion(id){
+        const questionBody = `
+            <div class="addUser">
+                <span>Exam Instructions<span class="require">*</span></span><br>
+                <textarea id="question" rows="6" >Enter exam instructions</textarea><br>
+                <button class="btn" id="addOption">Add Option</button>&nbsp;
+                <div class="optionDiv">
+                    <div class="mOptionDiv">
+                        <span>1</span>
+                        <input type="text"/>
+                        <span>-</span>
+                    </div>
+                </div><br>
+                <span>Answer Position<span class="require">*</span></span><br>
+                <input class="myinp" id="duration" type="number" placeholder="Enter answer position e.g 1 if option1 is correct" /><br>
+                <button class="formButton" id="btn">Save Question</button>
+            </div>
+        `
+        super.showModal(questionBody,"Add Question");
+        document.getElementById("addOption").addEventListener('click',()=>{
+            document.querySelector(".optionDiv").innerHTML += `
+                <div class="mOptionDiv">
+                    <span>1</span>
+                    <input type="text"/>
+                    <span>-</span>
+                </div>
+            `;
+            const firstSpan = document.querySelectorAll(".mOptionDiv > span:first-child");
+            for(let sp = 0; sp < firstSpan.length; sp++){
+                firstSpan[sp].innerHTML = (sp + 1).toString();
+            }
+            const lastSpan = document.querySelectorAll(".mOptionDiv > span:last-child");
+            for(let sp = 0; sp < firstSpan.length; sp++){
+                firstSpan[sp].innerHTML = (sp + 1).toString();
+            }
+        });
+        
+    }
+    addOption(){alert("Great")
+        
     }
     async getCss(){
         return [];

@@ -97,6 +97,7 @@ window.addEventListener("popstate", router);
 const loadUI = (view, viewMatch) =>{
     try{
         view.loadData(viewMatch.viewData);
+        view.loadDataEvent();
     }
     catch(e){}
 }
