@@ -17,7 +17,7 @@ export default class extends ParentView {
                         <span>Exam Duration(in minutes)<span class="require">*</span></span><br>
                         <input id="duration" type="number" placeholder="Enter exam duration" /><br>
                         <span>Exam Instructions<span class="require">*</span></span><br>
-                        <textarea rows="6" >Enter exam instructions</textarea><br>
+                        <textarea id="instruction" rows="6" >Enter exam instructions</textarea><br>
                         <button class="formButton" id="btn">Save</button>
                     </div>
                 </div>
@@ -31,13 +31,14 @@ export default class extends ParentView {
         const exam = {
             name: document.getElementById("name").value,
             duration: Number(document.getElementById("duration").value),
-            instruction: document.getElementById("instruction").value
+            instruction: document.getElementById("instruction").value.replaceAll('\n','<br>')
         }
 
         super.fetchApi('/add-exam','POST',exam)
         .then((data)=>{
             if(data.isSuccessful){
                 alert("Exam added successully"); //You can replace this with modal
+                console.log(data.data)
             }
             else{
                 alert("Action failed. Exam could not be added");

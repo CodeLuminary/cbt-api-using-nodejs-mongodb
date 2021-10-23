@@ -46,7 +46,7 @@ export default class extends ParentView {
         data.forEach((value)=>{
             examsTable.innerHTML += `<tr>
                     <td>${value.name}</td>
-                    <td>${value.duation}</td>
+                    <td>${value.duration}</td>
                     <td>${value.instruction}</td>
                     <td><a onclick="deleteUser(${value._id})">Delete</a><br>
                         <a onclick="addQuestion(${value._id})>Add question<a><br>

@@ -42,7 +42,7 @@ app.post('/update-user',(req,res)=>{
     userController.UpdateUser(req,res);
 })
 
-app.post('/api/add-exam', (req,res)=>{
+app.post('/add-exam', (req,res)=>{
     examController.addExam(req,res);
 })
 app.get('/all-exams',(req,res)=>{

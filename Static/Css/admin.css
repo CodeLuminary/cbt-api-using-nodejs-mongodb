@@ -91,6 +91,9 @@ td button{
     padding:10px 20px;color: #fff;cursor: pointer;
     border: 2px solid var(--green-gradient);border-radius: 5px; background-image: var(--green-gradient);
 }
+td a{
+    color: var(--icon-color);cursor: pointer;
+}
 
 textarea{height: 150px;padding: 10px;font-family: Arial, Helvetica, sans-serif;width: 390px;}
 
