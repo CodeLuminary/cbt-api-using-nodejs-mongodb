@@ -38,6 +38,8 @@ export default class extends ParentView {
         .then((data)=>{
             if(data.isSuccessful){
                 alert("User added successully"); //You can replace this with modal
+                console.log(data.data);
+                ParentView.updateUI("ViewUser",data.data);
             }
             else{
                 alert("Action failed. User could not be added");

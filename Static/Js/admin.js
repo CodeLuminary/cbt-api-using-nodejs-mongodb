@@ -130,7 +130,8 @@ const loadUI = (view, viewMatch) =>{
 }
 
 
-const getContent = async (value) =>{
+const getContent = async (value,index) =>{
+    value.view.setViewClass(value,index);
     if(value.view.shouldLoadData){
         value.view.viewData =  await new value.view().viewOnloaded();
             loadUI(new value.view(), value.view);

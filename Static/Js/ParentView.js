@@ -1,6 +1,7 @@
 import api from './api.js';
 
 export default class {
+    static viewArray = []
     constructor(argument) {
         this.argument = argument;
     }
@@ -31,5 +32,16 @@ export default class {
 
         modalHead.innerHTML = head; modalBody.innerHTML = body;
         modal.style.display = "block";
+    }
+    static setViewClass(viewClass,pos){
+        this.viewArray[pos] = viewClass;
+    }
+    static updateUI(viewName, viewData){ alert("gooooood")
+        for(let i =0; i < this.viewArray.length; i++){
+            if(this.viewArray[i].name==viewName){
+                this.viewArray[i].view.viewData = viewData;
+                break;
+            }
+        }
     }
 }

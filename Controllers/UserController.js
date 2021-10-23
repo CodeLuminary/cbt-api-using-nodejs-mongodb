@@ -1,13 +1,10 @@
 const UsersModel = require('../Models/users.js');
 class userController{
-    static AddUser = (req,res) =>{
+    static AddUser = (req,res) =>{const dis = this;
         const user = new UsersModel(req.body);
         user.save()
-        .then((result)=>{
-            res.send({
-                isSuccessful: true,
-                data:result
-            });
+        .then(()=>{
+            dis.FindUsers(res);
         })
         .catch((err)=>{
             console.log(err);
@@ -20,7 +17,10 @@ class userController{
     static FindUsers = (res)=>{
         UsersModel.find()
         .then((result)=>{
-            res.send(result);
+            res.send({
+                isSuccessful: true,
+                data:result
+            });
         })
         .catch((err)=>{
             console.log(err);
@@ -35,10 +35,10 @@ class userController{
             console.log(err);
         })
     }
-    static DeleteUser = (req,res) =>{
+    static DeleteUser = (req,res) =>{const dis = this;
         UsersModel.findByIdAndDelete(req.body.id)
-        .then((result)=>{
-            res.send(result)
+        .then(()=>{
+            dis.FindUsers(res);
         })
         .catch((err)=>{
             console.log(err);
