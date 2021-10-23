@@ -13,7 +13,7 @@ export default class extends ParentView {
                 This is a single page application by Ijoni Victor
             </p>
             <p>
-                <a href="/posts" data-link>View recent posts</a>.
+                <a href="/admin/add-user/2" data-link>View recent posts</a>.
             </p>
         `;
     }

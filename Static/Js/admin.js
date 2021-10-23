@@ -23,7 +23,34 @@ const navigateTo = target => {
         navLink[i].classList.remove("highlight");
     }
     if(target.matches("[data-link]")){
-        target.classList.add("highlight");
+        let isEqual = false;
+        const navA = document.querySelectorAll('.nav > a');
+        navA.forEach(value=>{
+            if(value.href === target.href){
+                isEqual = true;
+            }
+        })
+        if(isEqual){
+            target.classList.add("highlight");
+        }
+        else{
+            /*navA.forEach((value,index)=>{
+                if(target.href.search(value.href) != -1 && index != 0){
+                    target.classList.add("highlight");
+                }
+            })*/
+            for(let x =1; x < navA.length; x++){
+                const n = target.getAttribute("href").search(navA[x].getAttribute("href"));
+                
+                if(target.getAttribute("href").search(navA[x].getAttribute("href")) != -1){
+                    navA[x].classList.add("highlight");
+                    break;
+                }
+                else{
+                    console.log("food")
+                }
+            }
+        }
         history.pushState(null, null, target.href);
     }
     else{
