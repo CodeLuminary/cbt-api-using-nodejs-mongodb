@@ -59,12 +59,15 @@ export default class extends ParentView {
     deleteUser(id){
         const user = {
             id: id
-        }
+        };
+        const dis = this;
         super.fetchApi('/delete-user','POST', user)
         .then((data)=>{
             if(data.isSuccessful){
                 alert("User deleted successully"); //You can replace this with modal
                 ParentView.updateUI("ViewUser",data);
+                document.querySelector("#usersTable tbody").innerHTML="";
+                dis.loadData(data);
             }
             else{
                 alert("Action failed. User could not be added");

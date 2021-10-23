@@ -40,7 +40,6 @@ export default class {
         for(let i =0; i < this.viewArray.length; i++){ 
             if(this.viewArray[i].name===viewName){
                 this.viewArray[i].view.viewData = viewData;
-                break;
             }
         }
     }
