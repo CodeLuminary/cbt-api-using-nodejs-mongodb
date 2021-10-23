@@ -49,7 +49,7 @@ export default class extends ParentView {
                     <td>${value.duration}</td>
                     <td>${value.instruction}</td>
                     <td><a id="deleteExam" onclick="deleteExam(${value._id})">Delete</a><br>    
-                        <a id="addQuestion" onclick="addQuestion(${value._id})">Add question</a><br>
+                        <a id="addQuestion" data-id="${value._id}">Add question</a><br>
                     </td>
                 </tr>
             `
@@ -57,7 +57,10 @@ export default class extends ParentView {
     }
     loadDataEvent(){
         //Load event for new data here
-        document.getElementById("addQuestion").addEventListener('click', this.addQuestion)
+        const tag = document.getElementById("addQuestion"); let dis = this;
+        tag.onclick=function(){
+            dis.addQuestion(tag.getAttribute("data-id"))
+        }
     }
     async viewOnloaded(){
         return await super.fetchApi('/all-exams','GET')   
@@ -65,8 +68,8 @@ export default class extends ParentView {
     addQuestion(id){
         const questionBody = `
             <div class="addUser">
-                <span>Exam Instructions<span class="require">*</span></span><br>
-                <textarea id="question" rows="6" >Enter exam instructions</textarea><br>
+                <span>Question<span class="require">*</span></span><br>
+                <textarea id="question" rows="6" >Enter question</textarea><br>
                 <button class="btn" id="addOption">Add Option</button>&nbsp;
                 <div class="optionDiv">
                     <div class="mOptionDiv">
@@ -76,8 +79,8 @@ export default class extends ParentView {
                     </div>
                 </div><br>
                 <span>Answer Position<span class="require">*</span></span><br>
-                <input class="myinp" id="duration" type="number" placeholder="Enter answer position e.g 1 if option1 is correct" /><br>
-                <button class="formButton" id="btn">Save Question</button>
+                <input class="myinp" id="answerPosition" type="number" placeholder="Enter answer position e.g 1 if option1 is correct" /><br>
+                <button class="formButton" id="saveQuestion">Save Question</button>
             </div>
         `
         super.showModal(questionBody,"Add Question");
@@ -107,6 +110,37 @@ export default class extends ParentView {
                 })
             }
         });
+
+        document.getElementById("saveQuestion").onclick = ()=>{
+            const question = {
+                question: document.getElementById("question").value.replaceAll('\n','<br>'),
+                answerPosition: Number(document.getElementById('answerPosition').value),
+                options:[]
+            }
+            const options = document.querySelectorAll(".mOptionDiv input");
+            for(let inp = 0; inp < options.length; inp++){
+                question.options[inp] = options[inp].value;
+            }
+
+            const fullQuestion = {
+                query: {
+                    _id: id
+                },
+                data:{
+                    questions: question
+                }
+            }
+
+            super.fetchApi('/add-question','POST',fullQuestion)
+            .then((data)=>{
+                if(data.isSuccessful){
+                    alert("Question added successully"); //You can replace this with modal
+                }
+                else{
+                    alert("Action failed. Question could not be added");
+                }
+            })
+        }
         
     }
     addOption(){alert("Great")

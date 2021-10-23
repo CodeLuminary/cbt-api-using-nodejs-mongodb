@@ -26,6 +26,36 @@ class examController{
             console.log(err);
         })
     }
+    static addQuestion = (req,res)=>{
+        /*ExamModel.findOne(req.body.query)
+        .then((result)=>{
+            console.log(result);
+            result.questions.push(req.body.data);
+            result.save();
+            res.send(result)
+        })
+        .catch((err)=>{
+            console.log(err);
+        })*/
+
+        ExamModel.updateOne(req.body.query,{$push: req.body.data})
+        .then((result)=>{
+            res.send({
+                isSuccessful: true,
+                data:result
+            });
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+        /*ExamModel.findByIdAndUpdate(req.body.query,req.body.data)
+        .then((result)=>{
+            res.send(result)
+        })
+        .catch((err)=>{
+            console.log(err);
+        })*/
+    }
 }
 
 module.exports = examController;

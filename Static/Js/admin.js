@@ -107,7 +107,6 @@ const getContent = async (value) =>{
     if(value.view.shouldLoadData){
         value.view.viewData =  await new value.view().viewOnloaded();
             loadUI(new value.view(), value.view);
-            console.log(value.view.viewData,"newdata");
     }
 }
 
