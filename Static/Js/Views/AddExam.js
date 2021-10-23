@@ -13,9 +13,9 @@ export default class extends ParentView {
                     <h1 class=""><i class="fa fa-plus-square"></i>&nbsp;ADD EXAM</h1>
                     <div>
                         <span>Exam name<span class="require">*</span></span><br>
-                        <input type="text" placeholder="Enter exam name" /><br>
+                        <input id="name" type="text" placeholder="Enter exam name" /><br>
                         <span>Exam Duration(in minutes)<span class="require">*</span></span><br>
-                        <input type="email" placeholder="Enter exam duration" /><br>
+                        <input id="duration" type="number" placeholder="Enter exam duration" /><br>
                         <span>Exam Instructions<span class="require">*</span></span><br>
                         <textarea rows="6" >Enter exam instructions</textarea><br>
                         <button class="formButton" id="btn">Save</button>
@@ -25,11 +25,24 @@ export default class extends ParentView {
         `;
     }
     async loadHtmlEvent(){
-           document.getElementById("btn").addEventListener("click",this.showAlert);
-
+           document.getElementById("btn").addEventListener("click",this.addExam);
     }
-    showAlert(){
-        alert("Button click event is working");
+    addExam(){
+        const exam = {
+            name: document.getElementById("name").value,
+            duration: Number(document.getElementById("duration").value),
+            instruction: document.getElementById("instruction").value
+        }
+
+        super.fetchApi('/add-exam','POST',exam)
+        .then((data)=>{
+            if(data.isSuccessful){
+                alert("Exam added successully"); //You can replace this with modal
+            }
+            else{
+                alert("Action failed. Exam could not be added");
+            }
+        })
     }
     async getCss(){
         return [];

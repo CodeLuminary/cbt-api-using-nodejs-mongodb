@@ -35,7 +35,6 @@ export default class extends ParentView {
     async loadHtmlEvent(){
     }
     loadData(data){
-        console.log(data,"datanew")
         let usersTable = document.querySelector("#usersTable tbody");
         data.forEach((value)=>{
             usersTable.innerHTML += `<tr>
@@ -44,7 +43,7 @@ export default class extends ParentView {
                     <td>${value.password}</td>
                     <td><button onclick="deleteUser(${value._id})">Delete</button></td>
                 </tr>
-            `
+            `;
         })
     }
     async viewOnloaded(){

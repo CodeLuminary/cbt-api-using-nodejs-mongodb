@@ -103,10 +103,10 @@ const loadUI = (view, viewMatch) =>{
 
 
 const getContent = async (value) =>{
-    //const newView = new value.view();
     if(value.view.shouldLoadData){
         value.view.viewData =  await new value.view().viewOnloaded();
-            loadUI(new value.view(), value.view)
+            loadUI(new value.view(), value.view);
+            console.log(value.view.viewData,"newdata");
     }
 }
 
@@ -151,5 +151,17 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     //This is for lazy loading of data from server
     routes.forEach(getContent);
+
+    //Modal event
+    const closeModal = document.querySelector("#myModal .close");
+    const modal = document.getElementById("myModal");
+    closeModal.onclick = () =>{
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+    }
 
 });

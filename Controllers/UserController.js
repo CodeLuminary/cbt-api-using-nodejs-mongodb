@@ -1,4 +1,4 @@
-const UsersModel = require('../Models/users.js')
+const UsersModel = require('../Models/users.js');
 class userController{
     static AddUser = (req,res) =>{
         const user = new UsersModel(req.body);

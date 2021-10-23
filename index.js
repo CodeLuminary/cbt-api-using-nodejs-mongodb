@@ -4,7 +4,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const UsersModel = require('./Models/users')
 const dotenv = require('dotenv');
-const userController = require('./Controllers/UserController')
+const userController = require('./Controllers/UserController');
+const examController = require('./Controllers/ExamController')
 
 const app = express();
 
@@ -42,7 +43,10 @@ app.post('/update-user',(req,res)=>{
 })
 
 app.post('/api/add-exam', (req,res)=>{
-    
+    examController.addExam(req,res);
+})
+app.get('/all-exams',(req,res)=>{
+    examController.getExams(req,res);
 })
 app.get('/admin/*',(req,res)=>{
     res.sendFile(path.join(__dirname,'Static/admin.html'))
