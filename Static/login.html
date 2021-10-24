@@ -19,7 +19,19 @@
                 <p style="text-align:center">
                     <input type="submit" class="btn btnRed" onclick="loginUser()">Login</button>
                 </p> 
-            </form>       
+            </form>  
+            <script>
+                import api from './api.js';
+                api('/add-user','POST',user)
+                .then((data)=>{
+                    if(data.isSuccessful){
+                        //Redirect
+                    }
+                    else{
+                        alert("Action failed. User could not be added");
+                    }
+                })
+            </script>     
                      
     </div>
     </div>

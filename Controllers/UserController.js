@@ -35,6 +35,18 @@ class userController{
             console.log(err);
         })
     }
+    static FindOneUser = (req,res)=>{
+        UsersModel.findOne(req.body.query)
+        .then((result)=>{
+            res.send({
+                isSuccessful: true,
+                data:result
+            });
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
     static DeleteUser = (req,res) =>{const dis = this;
         UsersModel.findByIdAndDelete(req.body.id)
         .then(()=>{
