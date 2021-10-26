@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBT Admin Login</title>
     <link rel="stylesheet" type="text/css" href="/Static/Css/login.css"/>
 </head>
 <body>
     <div >
         <div class="loginDiv">
-             <form action="#" method="POST" onsubmit="return submit()">
+             <form method="POST" onsubmit="return submitForm()">
                 <h4>LOG IN</h4>
                 <span>Enter Email<span class="required">*</span></span><br />
                 <input type="text" placeholder="Enter email" id="email" required="required" name="email" class="loginInput" /><br />
@@ -17,20 +17,10 @@
                 <input type="password" placeholder="Enter password" id="password" required="required" name="password" class="loginInput" /><br />
                 <a class="forgotPassword" href="/forget-password.html">Forgot Password?</a>
                 <p style="text-align:center">
-                    <input type="submit" class="btn btnRed" onclick="loginUser()">Login</button>
+                    <input type="button" value="Login" onclick="return submitForm()" class="btn btnRed">
                 </p> 
             </form>  
-            <script>
-                import api from './api.js';
-                api('/add-user','POST',user)
-                .then((data)=>{
-                    if(data.isSuccessful){
-                        //Redirect
-                    }
-                    else{
-                        alert("Action failed. User could not be added");
-                    }
-                })
+            <script src="/Static/Js/login.js">                   
             </script>     
                      
     </div>

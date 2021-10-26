@@ -1,4 +1,5 @@
 const UsersModel = require('../Models/users.js');
+const jwt = require('jsonwebtoken');
 class userController{
     static AddUser = (req,res) =>{const dis = this;
         const user = new UsersModel(req.body);
@@ -34,6 +35,19 @@ class userController{
         .catch((err)=>{
             console.log(err);
         })
+    }
+    static FindUser = (req,res)=>{
+        console.log(req.body.query)
+        UsersModel.findOne(req.body.query)
+        .then((result)=>{
+            jwt.sign({user:result}, 'secretkey', {expiresIn: '600'}, (err,token)=>{
+                res.send({
+                    isSuccessful: true,
+                    token: token
+                })
+            }) 
+        })
+        .catch((err)=>console.log(err))  
     }
     static FindOneUser = (req,res)=>{
         UsersModel.findOne(req.body.query)

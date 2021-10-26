@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const userController = require('./Controllers/UserController');
 const examController = require('./Controllers/ExamController');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -61,12 +62,49 @@ app.get('/login',(req,res)=>{
     res.sendFile(path.join(__dirname,'Static/login.html'))
 })
 app.post('/loginuser',(req,res)=>{
-    userController.FindOneUser(req,res);
+    //user = req.body; //Get login credentials
+    //Authenticate user
+     userController.FindUser(req,res);
+    //Reply with secret key
+    
+})
+
+app.post('/user/admin',verifyToken,(req,res)=>{
+    jwt.verify(req.token, 'secretkey', (err, authData)=>{
+        if(err){
+            res.sendStatus(403);
+        }
+        else{
+            res.json({
+                message: 'verification successful'
+            })
+        }
+    })
 })
 
 app.all('/*',(req,res)=>{
     res.status(404).send({404: 'PAGE NOT FOUND!'})
 })
+
+/*
+    FORMAT OF TOKEN 
+    Authorization: Bearer <access_token>
+*/
+
+function verifyToken(req,res,next){
+    const bearerHeader = req.header["authorization"];
+    if(typeof bearerHeader !== undefined){
+        const bearer = bearerHeader.split(' ');
+        //Get token from array
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        //Next middleware
+        next();
+    }
+    else{
+        res.sendStatus(403);
+    }
+}
 
 if(process.env.NODE_ENV === 'production'){
     app.listen();
