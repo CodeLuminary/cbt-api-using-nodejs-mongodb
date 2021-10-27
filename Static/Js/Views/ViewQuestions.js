@@ -11,7 +11,7 @@ export default class extends ParentView {
 
     async getHtml() {
         return `
-        <div><button id="back">Back</button></div>
+        <div class="backDiv"><a href="/admin/view-exams" id="back" data-link>Back</a></div>
         <div class="addUserDiv col-2">
             <div>
                 <h1 class=""><i class="fa fa-laptop"></i>&nbsp;VIEW EXAMS</h1>
@@ -62,6 +62,7 @@ export default class extends ParentView {
     loadDataEvent(){
         //Load event for new data here
         const deleteQuestion = document.getElementById("viewQuestion");
+        
         let dis = this;
         
         deleteQuestion.onclick = function(){

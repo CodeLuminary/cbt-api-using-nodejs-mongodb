@@ -50,7 +50,7 @@ export default class extends ParentView {
                     <td>${value.instruction}</td>
                     <td><a id="deleteExam" onclick="deleteExam(${value._id})">Delete</a><br>    
                         <a id="addQuestion" data-id="${value._id}">Add question</a><br>
-                        <a id="viewQuestion" data-id="${value._id}">View question</a>
+                        <a href="/admin/view-exams/${value._id}" data-link>View question</a>
                     </td>
                 </tr>
             `
@@ -148,9 +148,6 @@ export default class extends ParentView {
             })
         }
         
-    }
-    viewQuestions(id){
-        location.hef="/admin/view-exams/" + id;
     }
     addOption(){alert("Great")
         

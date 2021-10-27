@@ -46,9 +46,6 @@ const navigateTo = target => {
                     navA[x].classList.add("highlight");
                     break;
                 }
-                else{
-                    console.log("food")
-                }
             }
         }
         history.pushState(null, null, target.href);
@@ -128,7 +125,6 @@ const loadUI = (view, viewMatch) =>{
     }
     catch(e){}
 }
-
 
 const getContent = async (value,index) =>{
     value.view.setViewClass(value,index);

@@ -162,4 +162,12 @@ textarea{height: 150px;padding: 10px;font-family: Arial, Helvetica, sans-serif;w
       height: 30px;width:150px;border: 1px solid var(--lighter-gray);float:left;
       outline: none;
     }
-  
+  .backDiv{
+      padding: 0px 10px 10px; border-bottom: 1px solid var(--lighter-gray);
+      margin-bottom: 10px;
+  }
+  .backDiv > a{
+      padding: 5px 20px; border-width: 0px;border-radius: 7px;cursor: pointer;
+      background-color: var(--lighter-gray);display: inline-block;
+  }
+  a{text-decoration: none;}
