@@ -53,6 +53,9 @@ app.get('/all-exams',(req,res)=>{
 app.post('/add-question',(req,res)=>{
     examController.addQuestion(req,res);
 })
+app.get('/exams/:id',(req,res)=>{
+    examController.getOneExam(req,res);
+});
 app.get('/admin/*',(req,res)=>{
     res.sendFile(path.join(__dirname,'Static/admin.html'))
 })

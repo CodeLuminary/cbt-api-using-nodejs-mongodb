@@ -26,6 +26,15 @@ class examController{
             console.log(err);
         })
     }
+    static getOneExam = (req,res) =>{
+        ExamModel.findById(req.params.id)
+        .then((result)=>{
+            res.send(result);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
     static addQuestion = (req,res)=>{
         ExamModel.updateOne(req.body.query,{$push: req.body.data})
         .then((result)=>{
