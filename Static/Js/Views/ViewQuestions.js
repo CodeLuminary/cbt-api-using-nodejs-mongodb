@@ -6,6 +6,7 @@ export default class extends ParentView {
 
     constructor(argument) {
         super(argument);
+        this.questionId = argument.id;
         this.setTitle("Cbt Admin - View Exam Questions");
     }
 
@@ -14,7 +15,7 @@ export default class extends ParentView {
         <div class="backDiv"><a href="/admin/view-exams" id="back" data-link>Back</a></div>
         <div class="addUserDiv col-2">
             <div>
-                <h1 class=""><i class="fa fa-laptop"></i>&nbsp;VIEW EXAMS</h1>
+                <h1 class=""><i class="fa fa-laptop"></i>&nbsp;VIEW EXAM QUESTIONS</h1>
                 <div style="padding:0px">
                     <table id="examsTable">
                         <thead>
@@ -35,12 +36,26 @@ export default class extends ParentView {
     }
     async loadHtmlEvent(){
             //Add Event listeners here
-           document.getElementById("back").addEventListener("click",this.goBack);
-    }
-    goBack(){
-        location.href="/admin/view-exams";
-    }
-    async loadHtmlEvent(){
+            let examsTable = document.querySelector("#examsTable tbody");
+            //const data = this.questionId
+            const examData = ParentView.getViewData("ViewExams");
+            const data = examData[this.questionId].questions;
+            data.forEach((value,key)=>{
+                let options = "";
+                 value.options.forEach((value,key)=>{
+                    options += "(" + (key +1).toString() + ") " + value + "<br>";
+                })
+                examsTable.innerHTML += `<tr>
+                        <td>${value.question}</td>
+                        <td>
+                            ${options}
+                        </td>
+                        <td>${value.answerPosition}</td>
+                        <td><a id="deleteQuestion" onclick="deleteExam(${key})">Delete</a><br>
+                        </td>
+                    </tr>
+                `
+            })
     }
     loadData(data){
         let examsTable = document.querySelector("#examsTable tbody");

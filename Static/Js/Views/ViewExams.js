@@ -34,23 +34,21 @@ export default class extends ParentView {
     }
     async loadHtmlEvent(){
             //Add Event listeners here
-           document.getElementById("btn").addEventListener("click",this.showAlert);
+           //document.getElementById("btn").addEventListener("click",this.showAlert);
     }
     showAlert(){
         alert("Button click event is working");
     }
-    async loadHtmlEvent(){
-    }
     loadData(data){
         let examsTable = document.querySelector("#examsTable tbody");
-        data.forEach((value)=>{
+        data.forEach((value,key)=>{
             examsTable.innerHTML += `<tr>
                     <td>${value.name}</td>
                     <td>${value.duration}</td>
                     <td>${value.instruction}</td>
                     <td><a id="deleteExam" onclick="deleteExam(${value._id})">Delete</a><br>    
                         <a id="addQuestion" data-id="${value._id}">Add question</a><br>
-                        <a href="/admin/view-exams/${value._id}" data-link>View question</a>
+                        <a href="/admin/view-exams/${key}" data-link>View question</a>
                     </td>
                 </tr>
             `
