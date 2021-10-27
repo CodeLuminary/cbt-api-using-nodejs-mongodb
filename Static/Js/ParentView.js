@@ -43,4 +43,11 @@ export default class {
             }
         }
     }
+    static getViewData(viewName){
+        for(let i =0; i < this.viewArray.length; i++){ 
+            if(this.viewArray[i].name===viewName){
+                return this.viewArray[i].view.viewData
+            }
+        }
+    }
 }

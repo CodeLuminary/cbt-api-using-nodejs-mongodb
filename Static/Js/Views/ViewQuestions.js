@@ -1,16 +1,17 @@
 import ParentView from "../ParentView.js";
 
 export default class extends ParentView {
-    static shouldLoadData = true;
+    static shouldLoadData =false;
     static viewData = undefined;
 
     constructor(argument) {
         super(argument);
-        this.setTitle("Cbt Admin - Add Exam");
+        this.setTitle("Cbt Admin - View Exam Questions");
     }
 
     async getHtml() {
         return `
+        <div><button id="back">Back</button></div>
         <div class="addUserDiv col-2">
             <div>
                 <h1 class=""><i class="fa fa-laptop"></i>&nbsp;VIEW EXAMS</h1>
@@ -18,9 +19,9 @@ export default class extends ParentView {
                     <table id="examsTable">
                         <thead>
                             <tr>
-                                <th>Exam Name</th>
-                                <th>Exam Duration</th>
-                                <th>Exam Instruction</th>
+                                <th>Question</th>
+                                <th>Options</th>
+                                <th>Answer Id</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,10 +35,10 @@ export default class extends ParentView {
     }
     async loadHtmlEvent(){
             //Add Event listeners here
-           document.getElementById("btn").addEventListener("click",this.showAlert);
+           document.getElementById("back").addEventListener("click",this.goBack);
     }
-    showAlert(){
-        alert("Button click event is working");
+    goBack(){
+        location.href="/admin/view-exams";
     }
     async loadHtmlEvent(){
     }
@@ -45,9 +46,11 @@ export default class extends ParentView {
         let examsTable = document.querySelector("#examsTable tbody");
         data.forEach((value)=>{
             examsTable.innerHTML += `<tr>
-                    <td>${value.name}</td>
-                    <td>${value.duration}</td>
-                    <td>${value.instruction}</td>
+                    <td>${value.question}</td>
+                    <td>${value.option}
+                    
+                    </td>
+                    <td>${value.answerPosition}</td>
                     <td><a id="deleteExam" onclick="deleteExam(${value._id})">Delete</a><br>    
                         <a id="addQuestion" data-id="${value._id}">Add question</a><br>
                         <a id="viewQuestion" data-id="${value._id}">View question</a>
@@ -58,18 +61,15 @@ export default class extends ParentView {
     }
     loadDataEvent(){
         //Load event for new data here
-        const tag = document.getElementById("addQuestion"); 
-        const viewQuestion = document.getElementById("viewQuestion");
+        const deleteQuestion = document.getElementById("viewQuestion");
         let dis = this;
-        tag.onclick=function(){
-            dis.addQuestion(tag.getAttribute("data-id"))
-        }
-        viewQuestion.onclick = function(){
+        
+        deleteQuestion.onclick = function(){
             dis.viewQuestions(viewQuestion.getAttribute("data-id"));
         }
     }
     async viewOnloaded(){
-        return await super.fetchApi('/all-exams','GET')   
+        //return await super.fetchApi('/all-exams','GET')   
     }
     addQuestion(id){
         const questionBody = `
@@ -149,11 +149,7 @@ export default class extends ParentView {
         }
         
     }
-    viewQuestions(id){
-        location.hef="/admin/view-exams/" + id;
-    }
-    addOption(){alert("Great")
-        
+    deleteQuestions(id){
     }
     async getCss(){
         return [];
