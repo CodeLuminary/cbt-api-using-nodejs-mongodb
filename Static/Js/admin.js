@@ -139,7 +139,7 @@ const getContent = async (value,index) =>{
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if(localStorage.getItem("token") == null || localStorage.getItem("token")==undefine){
+    if(localStorage.getItem("token") == null || localStorage.getItem("token")==undefined){
         location.href = "/login"
     }
     document.body.addEventListener("click", e => {

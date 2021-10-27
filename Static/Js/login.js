@@ -8,11 +8,12 @@ function submitForm(){
     .then((data)=>{
         if(data.isSuccessful){
             localStorage.setItem("token", data.token);
+            location.href = "/admin";
         }
         else{
             alert("Action failed. User could not be added");
         }
-    });alert("good")
+    });
     return false;
 } 
 let domain = "";

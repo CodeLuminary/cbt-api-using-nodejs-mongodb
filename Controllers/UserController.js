@@ -37,7 +37,6 @@ class userController{
         })
     }
     static FindUser = (req,res)=>{
-        console.log(req.body.query)
         UsersModel.findOne(req.body.query)
         .then((result)=>{
             jwt.sign({user:result}, 'secretkey', {expiresIn: '600'}, (err,token)=>{

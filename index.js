@@ -28,7 +28,7 @@ mongoose.connect(dbUri,{useNewUrlParser: true, useUnifiedTopology: true})
     console.log("Connected to db")
 }).catch(err=>console.log(err));
 
-app.post('/add-user', (req,res)=>{
+app.post('/add-user', verifyToken, (req,res)=>{
     userController.AddUser(req,res);
 })
 app.get('/all-users',(req,res)=>{
@@ -59,7 +59,7 @@ app.get('/exams/:id',(req,res)=>{
 app.get('/admin/*',(req,res)=>{
     res.sendFile(path.join(__dirname,'Static/admin.html'))
 })
-app.get('/admin', verifyToken, (req,res)=>{
+app.get('/admin', (req,res)=>{
     res.sendFile(path.join(__dirname,'Static/admin.html'))
 })
 app.get('/login',(req,res)=>{
@@ -77,7 +77,8 @@ app.post('/user/admin',verifyToken,(req,res)=>{
         }
         else{
             res.json({
-                message: 'verification successful'
+                message: 'verification successful',
+                authData
             })
         }
     })
