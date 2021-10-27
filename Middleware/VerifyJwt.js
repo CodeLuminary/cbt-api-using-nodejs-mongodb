@@ -1,6 +1,6 @@
-export default function(req,res,next){
+const verifyToken = (req,res,next)=>{
     const bearerHeader = req.header["authorization"];
-    if(typeof bearerHeader !== undefined){
+    if(bearerHeader !== undefined){
         const bearer = bearerHeader.split(' ');
         //Get token from array
         const bearerToken = bearer[1];
@@ -12,3 +12,4 @@ export default function(req,res,next){
         res.sendStatus(403);
     }
 }
+module.exports = verifyToken;
