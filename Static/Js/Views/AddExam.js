@@ -38,7 +38,8 @@ export default class extends ParentView {
         .then((data)=>{
             if(data.isSuccessful){
                 alert("Exam added successully"); //You can replace this with modal
-                console.log(data.data)
+                ParentView.updateUI("ViewExams",data.data);
+                //console.log(data.data)
             }
             else{
                 alert("Action failed. Exam could not be added");

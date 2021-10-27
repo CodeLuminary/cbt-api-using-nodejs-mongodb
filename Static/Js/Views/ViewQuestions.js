@@ -38,8 +38,9 @@ export default class extends ParentView {
             //Add Event listeners here
             let examsTable = document.querySelector("#examsTable tbody");
             //const data = this.questionId
-            const examData = ParentView.getViewData("ViewExams");
-            const data = examData[this.questionId].questions;
+            const examData = ParentView.getViewData("ViewExams")[this.questionId];
+            //const data = examData[this.questionId]
+            const data = examData.questions;
             data.forEach((value,key)=>{
                 let options = "";
                  value.options.forEach((value,key)=>{
@@ -51,11 +52,18 @@ export default class extends ParentView {
                             ${options}
                         </td>
                         <td>${value.answerPosition}</td>
-                        <td><a id="deleteQuestion" onclick="deleteExam(${key})">Delete</a><br>
+                        <td><a class="deleteQuestion" data-id="${key})">Delete</a><br>
                         </td>
                     </tr>
-                `
-            })
+                `;
+            });
+            const delQues = document.querySelectorAll(".deleteQuestion");
+            for(let i=0; i < delQues.length; i++){
+                delQues.onclick=function(){
+                    deleteQuestions(delQues[i].getAttribute("data-id"),examData._id);
+                }
+            }
+
     }
     loadData(data){
         let examsTable = document.querySelector("#examsTable tbody");
@@ -87,85 +95,8 @@ export default class extends ParentView {
     async viewOnloaded(){
         //return await super.fetchApi('/all-exams','GET')   
     }
-    addQuestion(id){
-        const questionBody = `
-            <div class="addUser">
-                <span>Question<span class="require">*</span></span><br>
-                <textarea id="question" rows="6" >Enter question</textarea><br>
-                <button class="btn" id="addOption">Add Option</button>&nbsp;
-                <div class="optionDiv">
-                    <div class="mOptionDiv">
-                        <span>1</span>
-                        <input type="text"/>
-                        <span>-</span>
-                    </div>
-                </div><br>
-                <span>Answer Position<span class="require">*</span></span><br>
-                <input class="myinp" id="answerPosition" type="number" placeholder="Enter answer position e.g 1 if option1 is correct" /><br>
-                <button class="formButton" id="saveQuestion">Save Question</button>
-            </div>
-        `
-        super.showModal(questionBody,"Add Question");
-        document.getElementById("addOption").addEventListener('click',()=>{
-            document.querySelector(".optionDiv").innerHTML += `
-                <div class="mOptionDiv">
-                    <span>1</span>
-                    <input type="text"/>
-                    <span>-</span>
-                </div>
-            `;
-
-            const rewriteFirstSpan = () =>{
-                const firstSpan = document.querySelectorAll(".mOptionDiv > span:first-child");
-                for(let sp = 0; sp < firstSpan.length; sp++){
-                    firstSpan[sp].innerHTML = (sp + 1).toString();
-                }
-            }
-
-            rewriteFirstSpan();
-            
-            const lastSpan = document.querySelectorAll(".mOptionDiv > span:last-child");
-            for(let sp = 0; sp < lastSpan.length; sp++){
-                lastSpan[sp].addEventListener('click',()=>{
-                    lastSpan[sp].parentElement.parentElement.removeChild(lastSpan[sp].parentElement);
-                    rewriteFirstSpan();
-                })
-            }
-        });
-
-        document.getElementById("saveQuestion").onclick = ()=>{
-            const question = {
-                question: document.getElementById("question").value.replaceAll('\n','<br>'),
-                answerPosition: Number(document.getElementById('answerPosition').value),
-                options:[]
-            }
-            const options = document.querySelectorAll(".mOptionDiv input");
-            for(let inp = 0; inp < options.length; inp++){
-                question.options[inp] = options[inp].value;
-            }
-
-            const fullQuestion = {
-                query: {
-                    _id: id
-                },
-                data:{
-                    questions: question
-                }
-            }
-
-            super.fetchApi('/add-question','POST',fullQuestion)
-            .then((data)=>{
-                if(data.isSuccessful){
-                    alert("Question added successully"); //You can replace this with modal
-                }
-                else{
-                    alert("Action failed. Question could not be added");
-                }
-            })
-        }
+    deleteQuestions(question,examId){
         
-    }
-    deleteQuestions(id){
     }
     async getCss(){
         return [];
