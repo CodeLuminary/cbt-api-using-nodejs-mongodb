@@ -14,6 +14,7 @@ export default class restApi{
         mode: 'cors',
         cache: 'no-cache',
         headers: {
+            'Authorization': "Bearer " + localStorage.getItem("token"),
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(reqObject)

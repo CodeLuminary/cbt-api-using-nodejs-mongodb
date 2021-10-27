@@ -139,6 +139,9 @@ const getContent = async (value,index) =>{
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    if(localStorage.getItem("token") == null || localStorage.getItem("token")==undefine){
+        location.href = "/login"
+    }
     document.body.addEventListener("click", e => {
         if (e.target.matches("[data-link]") || e.target.parentElement.matches("[data-link]")) {
             e.preventDefault();

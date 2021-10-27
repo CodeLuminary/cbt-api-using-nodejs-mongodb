@@ -7,7 +7,7 @@ function submitForm(){
     .then(result => result.json())
     .then((data)=>{
         if(data.isSuccessful){
-            console.log(data.token);
+            localStorage.setItem("token", data.token);
         }
         else{
             alert("Action failed. User could not be added");

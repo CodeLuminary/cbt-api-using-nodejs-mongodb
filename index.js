@@ -8,6 +8,7 @@ const userController = require('./Controllers/UserController');
 const examController = require('./Controllers/ExamController');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const verifyToken = require('./Middleware/VerifyJwt')
 
 const app = express();
 
@@ -55,18 +56,15 @@ app.post('/add-question',(req,res)=>{
 app.get('/admin/*',(req,res)=>{
     res.sendFile(path.join(__dirname,'Static/admin.html'))
 })
-app.get('/admin',(req,res)=>{
+app.get('/admin', verifyToken, (req,res)=>{
     res.sendFile(path.join(__dirname,'Static/admin.html'))
 })
 app.get('/login',(req,res)=>{
     res.sendFile(path.join(__dirname,'Static/login.html'))
 })
 app.post('/loginuser',(req,res)=>{
-    //user = req.body; //Get login credentials
-    //Authenticate user
+    //Authenticate user and reply with token
      userController.FindUser(req,res);
-    //Reply with secret key
-    
 })
 
 app.post('/user/admin',verifyToken,(req,res)=>{
@@ -91,20 +89,7 @@ app.all('/*',(req,res)=>{
     Authorization: Bearer <access_token>
 */
 
-function verifyToken(req,res,next){
-    const bearerHeader = req.header["authorization"];
-    if(typeof bearerHeader !== undefined){
-        const bearer = bearerHeader.split(' ');
-        //Get token from array
-        const bearerToken = bearer[1];
-        req.token = bearerToken;
-        //Next middleware
-        next();
-    }
-    else{
-        res.sendStatus(403);
-    }
-}
+
 
 if(process.env.NODE_ENV === 'production'){
     app.listen();
