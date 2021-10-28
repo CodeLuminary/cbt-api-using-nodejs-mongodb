@@ -9,7 +9,7 @@ const verifyToken = (req,res,next)=>{
         next();
     }
     else{
-        res.redirect('/login');
+        res.sendStatus(403);
     }
 }
 module.exports = verifyToken;

@@ -53,6 +53,9 @@ app.get('/all-exams',(req,res)=>{
 app.post('/add-question',(req,res)=>{
     examController.addQuestion(req,res);
 })
+app.post('/delete-question',(req,res)=>{
+    examController.deleteQuestion2(req,res);
+})
 app.get('/exams/:id',(req,res)=>{
     examController.getOneExam(req,res);
 });

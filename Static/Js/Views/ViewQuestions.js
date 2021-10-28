@@ -17,7 +17,7 @@ export default class extends ParentView {
             <div>
                 <h1 class=""><i class="fa fa-laptop"></i>&nbsp;VIEW EXAM QUESTIONS</h1>
                 <div style="padding:0px">
-                    <table id="examsTable">
+                    <table id="examsTable2">
                         <thead>
                             <tr>
                                 <th>Question</th>
@@ -36,7 +36,7 @@ export default class extends ParentView {
     }
     async loadHtmlEvent(){
             //Add Event listeners here
-            let examsTable = document.querySelector("#examsTable tbody");
+            let examsTable = document.querySelector("#examsTable2 tbody");
             //const data = this.questionId
             const examData = ParentView.getViewData("ViewExams")[this.questionId];
             //const data = examData[this.questionId]
@@ -57,13 +57,14 @@ export default class extends ParentView {
                     </tr>
                 `;
             });
+            let dis = this;
             const delQues = document.querySelectorAll(".deleteQuestion");
             for(let i=0; i < delQues.length; i++){
-                delQues.onclick=function(){
-                    deleteQuestions(delQues[i].getAttribute("data-id"),examData._id);
+                delQues[i].onclick=function(){
+                    dis.deleteQuestions(delQues[i].getAttribute("data-id"),examData);
                 }
             }
-
+            console.log(examData.questions.slice(1,1));
     }
     loadData(data){
         let examsTable = document.querySelector("#examsTable tbody");
@@ -96,6 +97,22 @@ export default class extends ParentView {
         //return await super.fetchApi('/all-exams','GET')   
     }
     deleteQuestions(question,examId){
+        const examQuestion = {
+            questionPosition: question,
+            id: examId._id,
+            examId: {questions:examId.questions}
+        }
+        super.fetchApi('/delete-question','POST',examQuestion)
+        .then((data)=>{
+            if(data.isSuccessful){
+                alert("question deleted successully"); //You can replace this with modal
+                ParentView.updateUI('ViewExams',data.data);
+                //location.reload()
+            }
+            else{
+                alert("Action failed. Question could not be deleted");
+            }
+        })
         
     }
     async getCss(){
