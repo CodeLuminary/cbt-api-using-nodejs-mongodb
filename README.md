@@ -9,7 +9,7 @@ Written in TypeScript.
 
 ## Start Development
 
-Kindly clone the repo ``
+Kindly clone the repo :)
 
 ### Setup
 
@@ -28,10 +28,8 @@ To install the necessary packages, in your root folder directory kindly run
 $ npm install
 
 # Start the app
-$ npm start
+$ node index.js
 
-# Run test
-$ npm test
 ```
 
 ---
