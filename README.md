@@ -1,6 +1,5 @@
 # COMPUTER BASED TEST API USING PYTHON AND MONGO DB
 
----
 
 **API** built with Mongo db + Express + vanillaJs + node.
 
