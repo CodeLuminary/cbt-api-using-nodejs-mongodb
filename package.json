@@ -2,7 +2,7 @@
   "name": "cbt-api",
   "version": "1.0.0",
   "description": "This is an api for cbt",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "server": "nodemon index.js"
   },
